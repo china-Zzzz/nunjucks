@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>手机端</title>
+<link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<script language="javascript"> 
+(function(){
+    var res = GetRequest();
+    var par = res['index'];
+    if(par!='gfan'){
+        var ua=navigator.userAgent.toLowerCase();
+        var contains=function (a, b){
+            if(a.indexOf(b)!=-1){return true;}
+        };
+        var toMobileVertion = function(){
+            //window.location.href = 'file:///Users/Zzzz/Desktop/11111/index.html?sss=1'
+            console.log(1)
+        }
+
+        if(contains(ua,"ipad")||(contains(ua,"rv:1.2.3.4"))||(contains(ua,"0.0.0.0"))||(contains(ua,"8.0.552.237"))){return false}
+        if((contains(ua,"android") && contains(ua,"mobile"))||(contains(ua,"android") && contains(ua,"mozilla")) ||(contains(ua,"android") && contains(ua,"opera"))
+    ||contains(ua,"ucweb7")||contains(ua,"iphone")){toMobileVertion();}
+    }
+})();
+function GetRequest() {
+   var url = location.search; //获取url中"?"符后的字串
+   var theRequest = new Object();
+   if (url.indexOf("?") != -1) {
+      var str = url.substr(1);
+      strs = str.split("&");
+      for(var i = 0; i < strs.length; i ++) {
+         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+      }
+   }
+   return theRequest;
+}
+</script>
+<body>
+<div id="ssss">
+  
+</div>
+</body>
+<script src="sea.js"></script>
+<script type="text/javascript">
+  seajs.config({
+    alias: {
+      "nunjucks": "nunjucks.js",
+      "jquery": "jquery.js",
+      "bootstrap":"./dist/js/bootstrap.min.js"
+    }
+  });
+  seajs.use("index.js",function(Index){
+    //入口文件
+    var index = new Index()
+  });
+</script>
+</html>
